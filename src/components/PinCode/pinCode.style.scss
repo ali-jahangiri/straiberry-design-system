@@ -1,0 +1,41 @@
+@import "../../styles/";
+
+.pinCode {
+    margin: $space-2 0;
+
+    &__fieldsContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        direction: ltr;
+    }
+
+
+    &__fieldBox {
+        border-radius: $borderRadius-1;
+        margin: 0 $space-2;
+        width: 48px;
+        height: 48px;
+        transition: $transition;
+        font-family: $persianFontFamily;
+        border: 2px solid $secondary;
+        outline: none;
+        text-align: center;
+        font-size: $fontSize-xl;
+        color: $darkGrey;
+
+        &:focus {
+            border-color: $primaryColor;
+            box-shadow: 0px 5.06818px 10.1364px rgba(0, 0, 0, 0.25);
+
+            &::placeholder {
+                color: white;
+            }
+        }
+
+        &::placeholder {
+            color: $lightGrey;
+        }
+
+    }
+}

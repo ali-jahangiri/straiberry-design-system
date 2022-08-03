@@ -1,0 +1,162 @@
+@import "../../styles";
+
+.button {
+  cursor: pointer;
+  border: none;
+  font-family: $persianFontFamily;
+  border-radius: $borderRadius;
+  transition: $transition;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+
+  &:disabled {
+      cursor: default;
+  }
+
+  &__content {
+      transition: $transitionDurationFast;
+      position: relative;
+      left: 0;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+  }
+
+  &__startEnhancer {
+      margin-right: $space-2;
+  }
+
+  &__endEnhancer {
+      margin-left: $space-2;
+  }
+
+  &__loadingSpinner {
+      position: absolute;
+      top: 100%;
+      transition: $transitionDurationFast;
+  }
+
+
+  &--loading {
+      .button {
+          &__loadingSpinner {
+              top: 50%;
+              transform: translateY(-50%);
+          }
+
+          &__content {
+              top: -170%;
+              transform: translateY(-50%);
+          }
+      }
+  }
+
+  &--primary {
+      background-color: $primaryColor;
+      color: $white;
+
+
+      &:hover {
+          background-color: $primaryColor-6;
+      }
+
+      &:active {
+          background-color: $primaryColor-8;
+      }
+
+      &.button--loading {
+          background-color: $primaryColor-6;
+      }
+
+      &:disabled {
+          background-color: $lightGrey;
+          color: $darkGrey;
+
+          &:hover,
+          &:active {
+              background-color: $lightGrey;
+          }
+      }
+
+  }
+
+  &--outlined {
+      border: 2px solid $primaryColor;
+      background-color: $white;
+      color: $primaryColor;
+      font-weight: $fw-bold;
+
+      &:hover {
+          border-color: $primaryColor-4;
+          color: $primaryColor-4;
+          background-color: $primaryColor-1;
+      }
+
+      &:active {
+          // TODO don't use exact token value right here
+          background-color: #C2DCFF;
+          color: #0052BD;
+          border-color: #0052BD;
+      }
+
+      &.button--loading {
+          background-color: $white;
+          border-color: $primaryColor-6;
+      }
+
+      &:disabled {
+          border-color: #C2C2C2;
+          color: #808080;
+          background-color: $white;
+
+          &:hover,
+          &:active {
+              border-color: #C2C2C2;
+              color: #808080;
+              background-color: $white;
+          }
+      }
+  }
+
+  &--text {
+      background-color: $white;
+      color: $primaryColor;
+      // TODO remote exact value
+      font-weight: 600;
+
+      &:hover {
+          color: $primaryColor-6;
+      }
+
+      &:active {
+          color: $primaryColor-8;
+      }
+
+      &:disabled {
+          color: $grey;
+      }
+  }
+
+  &--block {
+      width: 100%;
+  }
+
+  &--small {
+      height: 33px;
+      padding: $space-2;
+  }
+
+  &--medium {
+      height: 40px;
+      padding: $space-3;
+  }
+
+  &--large {
+      height: 52px;
+      font-size: $fontSize-base;
+      padding: $space-4;
+  }
+}
