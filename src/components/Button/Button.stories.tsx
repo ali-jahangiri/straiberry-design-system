@@ -8,15 +8,22 @@ export default {
 	component: Button,
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
 	children: "روی من کلیک کن",
+	className: "mycustomClassName",
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {};
-
 export const Outlined = Template.bind({});
-Outlined.args = {};
+Outlined.args = {
+	type: "outlined",
+	children: "روی من کلیک کن",
+};
+
+export const Text = Template.bind({});
+Text.args = {
+	type: "text",
+	children: "روی من کلیک کن",
+};

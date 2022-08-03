@@ -5,6 +5,7 @@
 	"singleQuote": false,
 	"bracketSpacing": true,
 	"bracketSameLine": false,
-	"printWidth": 100,
-	"useTabs": true
+	"printWidth": 140,
+	"useTabs": true,
+	"arrowParens": "avoid"
 }

@@ -5,7 +5,7 @@
 	border: none;
 	font-family: $persianFontFamily;
 	border-radius: $borderRadius;
-	transition: $transition;
+	transition: $transitionDurationFast;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -17,7 +17,7 @@
 	}
 
 	&__content {
-		transition: $transitionDurationFast;
+		transition: transform $transitionDurationFast , top $transitionDurationFast;
 		position: relative;
 		left: 0;
 		top: 0;
@@ -39,7 +39,7 @@
 		transition: $transitionDurationFast;
 	}
 
-	&--loading {
+	&--isLoading {
 		.button {
 			&__loadingSpinner {
 				top: 50%;
@@ -67,6 +67,15 @@
 
 		&.button--loading {
 			background-color: $primaryColor-6;
+		}
+
+		&.button--danger {
+			color: $white;
+			background-color: $danger;
+
+			&:hover {
+				background-color: rgba($color: $danger, $alpha: .8);
+			}
 		}
 
 		&:disabled {
@@ -104,6 +113,17 @@
 			border-color: $primaryColor-6;
 		}
 
+
+		&.button--danger {
+			color: $danger;
+			border-color: $danger;
+			
+			&:hover {
+				background-color: rgba($color: $danger, $alpha: .1);	
+			}
+		}
+
+
 		&:disabled {
 			border-color: #c2c2c2;
 			color: #808080;
@@ -132,6 +152,10 @@
 			color: $primaryColor-8;
 		}
 
+		&.button--danger {
+			color: $danger;
+		}
+
 		&:disabled {
 			color: $grey;
 		}
@@ -144,6 +168,7 @@
 	&--small {
 		height: 33px;
 		padding: $space-2;
+		font-size: $fontSize-xs;
 	}
 
 	&--medium {

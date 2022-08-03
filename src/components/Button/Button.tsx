@@ -1,30 +1,10 @@
 import React from "react";
+import useClassName from "../../hooks/useClassName";
+import renderEnhancer from "../../utils/renderEnhancer";
+import Spinner from "../Spinner";
+
 import "./Button.scss";
-
-type TComponentSize = "small" | "medium" | "large";
-interface IComponentRenderEnhancer {
-	startEnhancer?: TComponentRenderEnhancer;
-	endEnhancer?: TComponentRenderEnhancer;
-}
-type TComponentRenderEnhancer = React.ReactNode | React.ComponentType<any>;
-
-type TButtonType = "primary" | "outlined" | "text";
-
-export interface IButtonProps extends IComponentRenderEnhancer {
-	isLoading?: boolean;
-	isDisabled?: boolean;
-	danger?: boolean;
-	block?: boolean;
-	type?: TButtonType;
-	size?: TComponentSize;
-	onClick: React.MouseEventHandler<HTMLButtonElement>;
-	children?: React.ReactNode;
-}
-
-function renderEnhancer(Enhancer: TComponentRenderEnhancer) {
-	if (typeof Enhancer === "function") return <Enhancer />;
-	else return Enhancer;
-}
+import { IButtonProps } from "./button.type";
 
 const Button: React.FC<IButtonProps> = ({
 	type = "primary",
@@ -36,26 +16,22 @@ const Button: React.FC<IButtonProps> = ({
 	children,
 	startEnhancer,
 	endEnhancer,
-	onClick,
+	className: buttonComponentClassName,
+	...restElementProps
 }) => {
+	const modifiersList = { type, size, block, danger, isLoading, isDisabled };
+	const className = useClassName("button", modifiersList, buttonComponentClassName);
+
 	return (
-		<button
-			disabled={isDisabled}
-			className={`button button--${type} button--${size} ${block ? "button--block" : ""} ${
-				danger ? "button--danger" : ""
-			} ${isLoading ? "button--loading" : ""}`}
-			onClick={onClick}
-		>
+		<button {...restElementProps} disabled={isDisabled} className={className.block}>
 			<div className="button__content">
-				{endEnhancer && (
-					<div className="button__endEnhancer">{renderEnhancer(endEnhancer)}</div>
-				)}
+				{endEnhancer && <div className={className.element("endEnhancer")}>{renderEnhancer(endEnhancer)}</div>}
 				{children}
-				{startEnhancer && (
-					<div className="button__startEnhancer">{renderEnhancer(startEnhancer)}</div>
-				)}
+				{startEnhancer && <div className={className.element("startEnhancer")}>{renderEnhancer(startEnhancer)}</div>}
 			</div>
-			<div className="button__loadingSpinner"></div>
+			<div className={className.element("loadingSpinner")}>
+				<Spinner disabledWhileLoading={isDisabled} rotate={isLoading} mode={type === "primary" ? "white" : "dark"} />
+			</div>
 		</button>
 	);
 };
