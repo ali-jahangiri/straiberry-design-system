@@ -1,25 +1,31 @@
 @import "../../styles";
 
 .spinner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-    &--white {
-        svg path { fill: $white; }
-    }
+	&--white {
+		svg path {
+			fill: $white;
+		}
+	}
 
-    &--dark {
-        svg path { fill: $primaryColor-6; }
-    }
+	&--dark {
+		svg path {
+			fill: $primaryColor-6;
+		}
+	}
 
-    &--disabled {
-        svg path { fill: $grey; }
-    }
+	&--disabled {
+		svg path {
+			fill: $grey;
+		}
+	}
 
-    &--rotate {
-        svg {
-            @include rotateAnimation($transitionDuration);
-        }
-    }
+	&--rotate {
+		svg {
+			@include rotateAnimation($transitionDuration);
+		}
+	}
 }

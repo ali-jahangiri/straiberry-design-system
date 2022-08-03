@@ -1,18 +1,17 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React from "react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import TextInput from './TextInput';
+import TextInput from "./TextInput";
 
 export default {
-  title: 'TextInput',
-  component: TextInput,
+	title: "TextInput",
+	component: TextInput,
 } as ComponentMeta<typeof TextInput>;
 
+const Story: ComponentStory<typeof TextInput> = (args) => <TextInput {...args} />;
 
-const Story : ComponentStory<typeof TextInput> = (args) => <TextInput {...args} />;
-  
 export const Default = Story.bind({});
 
 Default.args = {
-  placeholder : "نام و نام خانوادگی",
+	placeholder: "نام و نام خانوادگی",
 };

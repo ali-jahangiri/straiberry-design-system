@@ -1,60 +1,55 @@
 @mixin extendInputBaseStyle {
-    padding: $space-3 $space-4;
-    border-radius: $borderRadius;
-    border: 2px solid $lightGrey;
-    font-family: $persianFontFamily;
-    font-size: $fontSize-base;
-    transition: $transition;
-    outline: none;
-    caret-color: $primaryColor-6;
-    position: relative;
-    z-index: 1;
+	padding: $space-3 $space-4;
+	border-radius: $borderRadius;
+	border: 2px solid $lightGrey;
+	font-family: $persianFontFamily;
+	font-size: $fontSize-base;
+	transition: $transition;
+	outline: none;
+	caret-color: $primaryColor-6;
+	position: relative;
+	z-index: 1;
 
+	&::placeholder {
+		font-size: $fontSize-base;
+		color: $grey;
+	}
 
-    &::placeholder {
-        font-size: $fontSize-base;
-        color: $grey;
-    }
-
-
-    &:focus {
-        border-color: $primaryColor-6;
-    }
+	&:focus {
+		border-color: $primaryColor-6;
+	}
 }
 
-
 @mixin rotateAnimation($duration) {
-    @keyframes rotateAnimeKeyframe {
-        from {
-            transform: rotate(0deg);
-        }
+	@keyframes rotateAnimeKeyframe {
+		from {
+			transform: rotate(0deg);
+		}
 
-        to {
-            transform: rotate(360deg);
-        }
-    }
+		to {
+			transform: rotate(360deg);
+		}
+	}
 
-
-    animation: rotateAnimeKeyframe $duration linear infinite;
+	animation: rotateAnimeKeyframe $duration linear infinite;
 }
 
 @mixin customScrollbar {
+	&::-webkit-scrollbar {
+		width: 10px;
+	}
 
-    &::-webkit-scrollbar {
-        width: 10px;
-    }
+	&::-webkit-scrollbar-track {
+		background: transparent;
+	}
 
-    &::-webkit-scrollbar-track {
-        background: transparent;
-    }
+	&::-webkit-scrollbar-thumb {
+		background: $superLightGrey;
+		border-radius: 4px;
+		padding-left: 1rem;
 
-    &::-webkit-scrollbar-thumb {
-        background: $superLightGrey;
-        border-radius: 4px;
-        padding-left: 1rem;
-
-        &:hover {
-            background-color: $lightGrey;
-        }
-    }
+		&:hover {
+			background-color: $lightGrey;
+		}
+	}
 }

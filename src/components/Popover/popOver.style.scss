@@ -1,40 +1,39 @@
 @import "../../styles/";
 
 .popover {
-    &__children {
-        position: absolute;
-        left: 50%;
-        top: 50px;
-        background-color: $white;
-        border-radius: $borderRadius-2;
-        box-shadow: 0 0 30px black;
-        box-shadow: 0 0px 48px -22px $darkGrey;
-        z-index: 4;
-        transition: $transition;
-        opacity: 0;
-        transform: translate(-50%, 0px);
+	&__children {
+		position: absolute;
+		left: 50%;
+		top: 50px;
+		background-color: $white;
+		border-radius: $borderRadius-2;
+		box-shadow: 0 0 30px black;
+		box-shadow: 0 0px 48px -22px $darkGrey;
+		z-index: 4;
+		transition: $transition;
+		opacity: 0;
+		transform: translate(-50%, 0px);
 
-        &::before {
-            content: "";
-            display: block;
-            position: absolute;
-            left: 50%;
-            top: -10px;
-            transform: translateX(-50%) rotate(45deg);
-            width: 25px;
-            height: 25px;
-            background-color: $white;
-        }
+		&::before {
+			content: "";
+			display: block;
+			position: absolute;
+			left: 50%;
+			top: -10px;
+			transform: translateX(-50%) rotate(45deg);
+			width: 25px;
+			height: 25px;
+			background-color: $white;
+		}
 
-        &--show {
-            opacity: 1;
-            transform: translate(-50%, 10px);
-        }
-    }
+		&--show {
+			opacity: 1;
+			transform: translate(-50%, 10px);
+		}
+	}
 
-
-    &__contentContainer {
-        position: relative;
-        z-index: 2;
-    }
+	&__contentContainer {
+		position: relative;
+		z-index: 2;
+	}
 }
