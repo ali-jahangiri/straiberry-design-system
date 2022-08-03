@@ -8,7 +8,7 @@ export default {
 	component: TextInput,
 } as ComponentMeta<typeof TextInput>;
 
-const Story: ComponentStory<typeof TextInput> = (args) => <TextInput {...args} />;
+const Story: ComponentStory<typeof TextInput> = args => <TextInput {...args} />;
 
 export const Default = Story.bind({});
 

@@ -1,20 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRef } from "react";
+import useClassName from "../../hooks/useClassName";
 
-import { IComponentRenderEnhancer, TComponentSize } from "../../types/base.type";
 import renderEnhancer from "../../utils/renderEnhancer";
 
 import "./textInput.style.scss";
-
-export interface ITextInputProps extends IComponentRenderEnhancer {
-	value?: string | number;
-	placeholder?: string;
-	errorMessage?: string;
-	haveError?: boolean;
-	size?: TComponentSize;
-	autoFocus?: boolean;
-	onChange: (text: string) => void;
-}
+import { ITextInputProps } from "./textInput.type";
 
 const ErrorIcon = () => (
 	<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,58 +16,45 @@ const ErrorIcon = () => (
 	</svg>
 );
 
-const TextInput: React.FC<ITextInputProps> = ({
-	value,
-	errorMessage,
-	placeholder,
-	haveError,
-	size = "medium",
-	autoFocus,
-	startEnhancer,
-	endEnhancer,
-	onChange,
-}) => {
-	const inputRef = useRef<HTMLInputElement>(null);
+const TextInput = React.forwardRef<HTMLInputElement, ITextInputProps>(
+	(
+		{ errorMessage, haveError, size = "medium", startEnhancer, endEnhancer, className: inputComponentClassName, ...restElementProps },
+		ref
+	) => {
+		const enhanced = Boolean(startEnhancer || endEnhancer);
+		const [isFocused, setIsFocused] = useState(false);
 
-	const focusOnInputHandler = () => inputRef.current!.focus();
+		const modifiersList = { size, enhanced, focus: isFocused, error: haveError };
+		const className = useClassName("textInput", modifiersList, inputComponentClassName);
+		const inputRef = useRef<HTMLInputElement>(null);
 
-	const haveEnhancer = startEnhancer || endEnhancer;
+		const focusOnInputHandler = () => inputRef.current?.focus();
 
-	return (
-		<div
-			className={`textInput textInput--${size} ${haveEnhancer ? "textInput--enhanced" : ""} ${
-				haveError ? "textInput--error" : ""
-			}`}
-		>
-			<div className="textInput__container">
-				{startEnhancer && (
-					<div onClick={focusOnInputHandler} className="textInput__startEnhancer">
-						{renderEnhancer(startEnhancer)}
-					</div>
-				)}
-				<input
-					ref={inputRef}
-					type="text"
-					autoFocus={autoFocus}
-					value={value || ""}
-					placeholder={placeholder}
-					onChange={({ target }) => onChange(target.value)}
-				/>
-				{endEnhancer && (
-					<div onClick={focusOnInputHandler} className="textInput__endEnhancer">
-						{renderEnhancer(endEnhancer)}
+		return (
+			<div className={className.block}>
+				<div className={className.element("container")}>
+					{startEnhancer && (
+						<div onClick={focusOnInputHandler} className={className.element("startEnhancer")}>
+							{renderEnhancer(startEnhancer)}
+						</div>
+					)}
+					<input onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} type="text" {...restElementProps} ref={ref} />
+					{endEnhancer && (
+						<div onClick={focusOnInputHandler} className={className.element("endEnhancer")}>
+							{renderEnhancer(endEnhancer)}
+						</div>
+					)}
+				</div>
+
+				{errorMessage && (
+					<div className={className.element("errorMessage")}>
+						<ErrorIcon />
+						<span>{errorMessage}</span>
 					</div>
 				)}
 			</div>
-
-			{errorMessage && (
-				<div className="textInput__errorMessage">
-					<ErrorIcon />
-					<span>{errorMessage}</span>
-				</div>
-			)}
-		</div>
-	);
-};
+		);
+	}
+);
 
 export default TextInput;

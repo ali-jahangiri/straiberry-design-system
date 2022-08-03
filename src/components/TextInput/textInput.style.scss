@@ -22,10 +22,6 @@
 		&::placeholder {
 			color: $grey;
 		}
-
-		&:focus {
-			border-color: $primaryColor-6;
-		}
 	}
 
 	&__container {
@@ -34,6 +30,7 @@
 		border: 2px solid $lightGrey;
 		border-radius: $borderRadius;
 		background-color: $white;
+		transition: $transitionDurationFast;
 	}
 
 	&__errorMessage {
@@ -44,10 +41,19 @@
 		display: flex;
 		align-items: center;
 		font-size: $fontSize-sm;
+		margin-right: $space-1;
 
 		svg {
 			margin-left: $space-1;
 		}
+	}
+
+	&__startEnhancer {
+		margin-left: $space-2;
+	}
+
+	&__endEnhancer {
+		margin-right: $space-2;
 	}
 
 	&--enhanced {
@@ -77,6 +83,21 @@
 	}
 
 	&--large {
+		input {
+			font-size: $fontSize-lg;
+
+			&::placeholder {
+				font-size: $fontSize-lg;
+			}
+		}
+	}
+
+	&--focus {
+		.textInput {
+			&__container {
+				border-color: $primaryColor-6;
+			}
+		}
 	}
 
 	&--error {
@@ -84,9 +105,16 @@
 			border-color: $danger;
 		}
 
-		.textInput__errorMessage {
-			opacity: 1;
-			margin-top: $space-1;
+		.textInput {
+
+			&__container {
+				border-color: $danger;
+			}
+
+			&__errorMessage {
+				opacity: 1;
+				margin-top: $space-2;
+			}
 		}
 	}
 }
