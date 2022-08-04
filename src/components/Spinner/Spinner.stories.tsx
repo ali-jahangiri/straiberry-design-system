@@ -8,7 +8,7 @@ export default {
 	component: Spinner,
 } as ComponentMeta<typeof Spinner>;
 
-const Story: ComponentStory<typeof Spinner> = (args) => <Spinner {...args} />;
+const Story: ComponentStory<typeof Spinner> = args => <Spinner {...args} />;
 
 export const Default = Story.bind({});
 

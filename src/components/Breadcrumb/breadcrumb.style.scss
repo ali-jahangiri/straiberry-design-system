@@ -1,11 +1,11 @@
 @import "../../styles/";
 
 .breadcrumb {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 
-    &__separator {
-        user-select: none;
-        color: $lightGrey;
-    }
+	&__separator {
+		user-select: none;
+		color: $lightGrey;
+	}
 }

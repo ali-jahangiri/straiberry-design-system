@@ -8,7 +8,7 @@ export default {
 	component: PasswordInput,
 } as ComponentMeta<typeof PasswordInput>;
 
-const Story: ComponentStory<typeof PasswordInput> = (args) => <PasswordInput {...args} />;
+const Story: ComponentStory<typeof PasswordInput> = args => <PasswordInput {...args} />;
 
 export const Default = Story.bind({});
 

@@ -22,7 +22,11 @@ function createClassNameWithModifierChain(blockName: string, modifiersList: IMod
 		.join(" ");
 }
 
-function combineEntireClassNameSections(blockName: string, modifiersChain: string, additionalInjectedClassName: string | undefined) {
+function combineEntireClassNameSections(
+	blockName: string,
+	modifiersChain: string,
+	additionalInjectedClassName: string | undefined
+) {
 	const haveInjectedClassName = additionalInjectedClassName || "";
 	return `${blockName} ${modifiersChain} ${haveInjectedClassName}`.trim();
 }

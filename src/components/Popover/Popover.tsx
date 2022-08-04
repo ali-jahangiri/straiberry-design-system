@@ -44,10 +44,7 @@ const Popover: React.FC<IPopoverProps> = ({ open, children, width, placeholder, 
 		<div ref={popoverRef} className="popover">
 			<div className="popover__placeholder">{placeholder}</div>
 			{!haveToUnMount ? (
-				<div
-					style={{ width: width }}
-					className={`popover__children ${isInUnMounting ? "popover__children--show" : ""}`}
-				>
+				<div style={{ width: width }} className={`popover__children ${isInUnMounting ? "popover__children--show" : ""}`}>
 					<div className="popover__contentContainer">{children}</div>
 				</div>
 			) : null}

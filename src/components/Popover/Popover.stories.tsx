@@ -8,7 +8,7 @@ export default {
 	component: Popover,
 } as ComponentMeta<typeof Popover>;
 
-const Story: ComponentStory<typeof Popover> = (args) => <Popover {...args} />;
+const Story: ComponentStory<typeof Popover> = args => <Popover {...args} />;
 
 export const Default = Story.bind({});
 

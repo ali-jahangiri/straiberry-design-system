@@ -1,20 +1,18 @@
 @import "../../styles/";
 
-
 .breadcrumbItem {
-    margin: 0 $space-3;
-    font-size: $fontSize-sm;
-    color: $grey;
-    cursor: pointer;
-    transition: $transitionDurationFast;
-    user-select: none;
+	margin: 0 $space-3;
+	font-size: $fontSize-sm;
+	color: $grey;
+	cursor: pointer;
+	transition: $transitionDurationFast;
+	user-select: none;
 
+	&:hover {
+		color: $superDarkGrey;
+	}
 
-    &:hover {
-        color : $superDarkGrey;
-    }
-
-    &--isActive {
-        color: $superDarkGrey;
-    }
+	&--isActive {
+		color: $superDarkGrey;
+	}
 }

@@ -9,17 +9,9 @@ export interface Props {
 
 const Spinner: React.FC<Props> = ({ mode, rotate, disabledWhileLoading }) => (
 	<div
-		className={`spinner ${rotate ? "spinner--rotate" : ""} ${
-			disabledWhileLoading ? "spinner--disabled" : ""
-		} spinner--${mode}`}
+		className={`spinner ${rotate ? "spinner--rotate" : ""} ${disabledWhileLoading ? "spinner--disabled" : ""} spinner--${mode}`}
 	>
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			width="21"
-			height="20"
-			viewBox="0 0 21 20"
-			fill="none"
-		>
+		<svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
 			<path
 				opacity="0.2"
 				fillRule="evenodd"

@@ -24,7 +24,7 @@ function passwordStrengthCheck(password: string) {
 		containsNumber,
 		atLeastEightChar = false;
 
-	splittedPasswordString.find((char) => {
+	splittedPasswordString.find(char => {
 		if (EN_ALPHABET.includes(char)) containsLowerCaseChar = true;
 		else if (EN_ALPHABET.toUpperCase().includes(char)) containsUpperCaseChar = true;
 		else if (NUMBERS.includes(char)) containsNumber = true;
@@ -42,11 +42,7 @@ function passwordStrengthCheck(password: string) {
 
 interface IReqRowDataSchema {
 	label: string;
-	validateKey:
-		| "containsLowerCaseChar"
-		| "containsUpperCaseChar"
-		| "containsNumber"
-		| "atLeastEightChar";
+	validateKey: "containsLowerCaseChar" | "containsUpperCaseChar" | "containsNumber" | "atLeastEightChar";
 }
 
 const REQ_ROW_DATA: IReqRowDataSchema[] = [
@@ -92,7 +88,7 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({
 	};
 
 	const changeInputTypeHandler = () => {
-		setShowPassword((prev) => !prev);
+		setShowPassword(prev => !prev);
 		focusOnInputHandler();
 	};
 
@@ -105,9 +101,7 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({
 	useEffect(
 		function validatePasswordForSendingIntoHandlers() {
 			if (handleValidation && value) {
-				const allValueAreTruthy = Object.values(memoizedStrengthCheckResult).every(
-					(value) => value
-				);
+				const allValueAreTruthy = Object.values(memoizedStrengthCheckResult).every(value => value);
 				if (allValueAreTruthy) {
 					setWasValidPassword(true);
 					onValidateSuccuss?.();
@@ -135,18 +129,10 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({
 					onChange={({ target }) => onChange(target.value)}
 				/>
 				<div
-					className={`passwordInput__showPassTrigger ${
-						showPassword ? "passwordInput__showPassTrigger--showPass" : ""
-					}`}
+					className={`passwordInput__showPassTrigger ${showPassword ? "passwordInput__showPassTrigger--showPass" : ""}`}
 					onClick={changeInputTypeHandler}
 				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="16"
-						height="16"
-						viewBox="0 0 16 16"
-						fill="none"
-					>
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
 						<path
 							fillRule="evenodd"
 							clipRule="evenodd"
@@ -175,26 +161,14 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({
 							key={i}
 						>
 							{memoizedStrengthCheckResult[reqItem.validateKey] ? (
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="14"
-									height="14"
-									viewBox="0 0 14 14"
-									fill="none"
-								>
+								<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
 									<path
 										d="M7.00004 0.333252C3.32004 0.333252 0.333374 3.31992 0.333374 6.99992C0.333374 10.6799 3.32004 13.6666 7.00004 13.6666C10.68 13.6666 13.6667 10.6799 13.6667 6.99992C13.6667 3.31992 10.68 0.333252 7.00004 0.333252ZM5.19337 9.85992L2.80004 7.46658C2.54004 7.20658 2.54004 6.78658 2.80004 6.52659C3.06004 6.26658 3.48004 6.26658 3.74004 6.52659L5.66671 8.44658L10.2534 3.85992C10.5134 3.59992 10.9334 3.59992 11.1934 3.85992C11.4534 4.11992 11.4534 4.53992 11.1934 4.79992L6.13337 9.85992C5.88004 10.1199 5.45337 10.1199 5.19337 9.85992Z"
 										fill="#62B96F"
 									/>
 								</svg>
 							) : (
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="14"
-									height="14"
-									viewBox="0 0 14 14"
-									fill="none"
-								>
+								<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
 									<path
 										d="M7.00004 0.333252C3.31337 0.333252 0.333374 3.31325 0.333374 6.99992C0.333374 10.6866 3.31337 13.6666 7.00004 13.6666C10.6867 13.6666 13.6667 10.6866 13.6667 6.99992C13.6667 3.31325 10.6867 0.333252 7.00004 0.333252ZM9.86671 9.86658C9.60671 10.1266 9.18671 10.1266 8.92671 9.86658L7.00004 7.93992L5.07337 9.86658C4.81337 10.1266 4.39337 10.1266 4.13337 9.86658C3.87337 9.60658 3.87337 9.18659 4.13337 8.92659L6.06004 6.99992L4.13337 5.07325C3.87337 4.81325 3.87337 4.39325 4.13337 4.13325C4.39337 3.87325 4.81337 3.87325 5.07337 4.13325L7.00004 6.05992L8.92671 4.13325C9.18671 3.87325 9.60671 3.87325 9.86671 4.13325C10.1267 4.39325 10.1267 4.81325 9.86671 5.07325L7.94004 6.99992L9.86671 8.92659C10.12 9.17992 10.12 9.60658 9.86671 9.86658Z"
 										fill="#FE6B6B"

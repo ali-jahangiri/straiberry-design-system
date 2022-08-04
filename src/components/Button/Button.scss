@@ -17,7 +17,7 @@
 	}
 
 	&__content {
-		transition: transform $transitionDurationFast , top $transitionDurationFast;
+		transition: transform $transitionDurationFast, top $transitionDurationFast;
 		position: relative;
 		left: 0;
 		top: 0;
@@ -74,7 +74,7 @@
 			background-color: $danger;
 
 			&:hover {
-				background-color: rgba($color: $danger, $alpha: .8);
+				background-color: rgba($color: $danger, $alpha: 0.8);
 			}
 		}
 
@@ -113,16 +113,14 @@
 			border-color: $primaryColor-6;
 		}
 
-
 		&.button--danger {
 			color: $danger;
 			border-color: $danger;
-			
+
 			&:hover {
-				background-color: rgba($color: $danger, $alpha: .1);	
+				background-color: rgba($color: $danger, $alpha: 0.1);
 			}
 		}
-
 
 		&:disabled {
 			border-color: #c2c2c2;

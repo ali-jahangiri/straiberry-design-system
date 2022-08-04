@@ -8,7 +8,7 @@ export default {
 	component: PinCode,
 } as ComponentMeta<typeof PinCode>;
 
-const Story: ComponentStory<typeof PinCode> = (args) => <PinCode {...args} />;
+const Story: ComponentStory<typeof PinCode> = args => <PinCode {...args} />;
 
 export const Default = Story.bind({});
 

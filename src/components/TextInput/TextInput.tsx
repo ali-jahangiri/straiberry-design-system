@@ -18,7 +18,15 @@ const ErrorIcon = () => (
 
 const TextInput = React.forwardRef<HTMLInputElement, ITextInputProps>(
 	(
-		{ errorMessage, haveError, size = "medium", startEnhancer, endEnhancer, className: inputComponentClassName, ...restElementProps },
+		{
+			errorMessage,
+			haveError,
+			size = "medium",
+			startEnhancer,
+			endEnhancer,
+			className: inputComponentClassName,
+			...restElementProps
+		},
 		ref
 	) => {
 		const enhanced = Boolean(startEnhancer || endEnhancer);
@@ -38,7 +46,13 @@ const TextInput = React.forwardRef<HTMLInputElement, ITextInputProps>(
 							{renderEnhancer(startEnhancer)}
 						</div>
 					)}
-					<input onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} type="text" {...restElementProps} ref={ref} />
+					<input
+						onFocus={() => setIsFocused(true)}
+						onBlur={() => setIsFocused(false)}
+						type="text"
+						{...restElementProps}
+						ref={ref}
+					/>
 					{endEnhancer && (
 						<div onClick={focusOnInputHandler} className={className.element("endEnhancer")}>
 							{renderEnhancer(endEnhancer)}

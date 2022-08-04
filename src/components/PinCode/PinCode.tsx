@@ -10,12 +10,7 @@ export interface IPinCodeProps {
 	onFullFill?: () => void;
 }
 
-const PinCode: React.FC<IPinCodeProps> = ({
-	values = [],
-	autoFocusWithDelay,
-	onChange,
-	onFullFill,
-}) => {
+const PinCode: React.FC<IPinCodeProps> = ({ values = [], autoFocusWithDelay, onChange, onFullFill }) => {
 	const inputsFieldRefs = useRef<HTMLInputElement[]>([]);
 
 	const blurOnLastFieldComplete = (isTheLastField: boolean) => {
@@ -44,7 +39,7 @@ const PinCode: React.FC<IPinCodeProps> = ({
 	};
 
 	const checkAndApplyFullFill = (valuesList: (string | number)[]) => {
-		const isEveryValueIsTruthy = valuesList.every((value) => value);
+		const isEveryValueIsTruthy = valuesList.every(value => value);
 		if (isEveryValueIsTruthy && onFullFill) onFullFill();
 	};
 
@@ -66,7 +61,7 @@ const PinCode: React.FC<IPinCodeProps> = ({
 					{values.map((value, i) => (
 						<input
 							inputMode="numeric"
-							ref={(ref) => (inputsFieldRefs.current[i] = ref as HTMLInputElement)}
+							ref={ref => (inputsFieldRefs.current[i] = ref as HTMLInputElement)}
 							className="pinCode__fieldBox"
 							type="text"
 							key={i}
