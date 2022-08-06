@@ -28,10 +28,10 @@
 		input {
 			opacity: 0;
 			position: absolute;
-			left: 0;
-			top: 0;
-			width: 100%;
-			height: 100%;
+			left: -2px; // half of parent container border size
+			top: -2px; // half of parent container border size
+			width: calc(100% + 4px); // twice of parent container border size
+			height: calc(100% + 4px); // twice of parent container border size
 			margin: 0;
 			z-index: 1;
 			cursor: pointer;
