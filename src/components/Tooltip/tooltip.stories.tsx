@@ -18,7 +18,7 @@ const Story: ComponentStory<typeof Tooltip> = args => (
 export const Default = Story.bind({});
 
 Default.args = {
-	children: <Button>روی من هاورهاورهاورهاورهاورهاورهاورهاورهاورهاور کن</Button>,
+	children: <Button>روی من هاور کن</Button>,
 	title: "فعال سازی پیامک",
 	triggerWidth: "click",
 	align: "top",

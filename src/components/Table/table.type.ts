@@ -8,14 +8,13 @@ export interface ITableColumn {
 	showSortIcon?: boolean;
 }
 
-
 export type TSortBaseType = "ace" | "des" | "";
 
 export interface IColumnSort {
 	index: number;
 	type: TSortBaseType;
 	key: string;
-};
+}
 
 export interface ISelectedRecord {
 	index: number;
