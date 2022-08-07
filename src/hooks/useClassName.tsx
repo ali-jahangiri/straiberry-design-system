@@ -31,25 +31,39 @@ function combineEntireClassNameSections(
 	return `${blockName} ${modifiersChain} ${haveInjectedClassName}`.trim();
 }
 
-const useClassName = (blockClassName: string, modifiers: IClassNameModifier, additionalInjectableClassName?: string) => {
+function createClassNameProcessHandler(
+	baseClassName: string,
+	targetModifier?: IClassNameModifier,
+	additionalInjectableClassName?: string
+) {
+	if (targetModifier && Object.keys(targetModifier).length) {
+		const activeModifiersList = Object.entries(targetModifier)
+			.filter(([_, modifierStatus]) => checkModifierStatus(modifierStatus))
+			.map(([modifierName, modifierStatus]) => ({ modifierName, modifierStatus }));
+
+		const modifiersChain = createClassNameWithModifierChain(baseClassName, activeModifiersList);
+		const className = combineEntireClassNameSections(baseClassName, modifiersChain, additionalInjectableClassName);
+
+		return className;
+	} else return baseClassName;
+}
+
+const useClassName = (blockClassName: string, modifiers?: IClassNameModifier, additionalInjectableClassName?: string) => {
 	const memoizedClassName = useMemo(
-		function createClassNameProcessHandler() {
-			const activeModifiersList = Object.entries(modifiers)
-				.filter(([_, modifierStatus]) => checkModifierStatus(modifierStatus))
-				.map(([modifierName, modifierStatus]) => ({ modifierName, modifierStatus }));
-
-			const modifiersChain = createClassNameWithModifierChain(blockClassName, activeModifiersList);
-			const className = combineEntireClassNameSections(blockClassName, modifiersChain, additionalInjectableClassName);
-
-			return className;
-		},
+		() => createClassNameProcessHandler(blockClassName, modifiers, additionalInjectableClassName),
 		[modifiers]
 	);
 
 	return {
 		block: memoizedClassName,
-		element: (...elementIdentifiers: string[]) => {
+		element(...elementIdentifiers: string[]) {
 			return `${blockClassName}__${elementIdentifiers.join("__")}`;
+		},
+		elementWithModifier(elementIdentifier: string[] | string, elementModifier: IClassNameModifier) {
+			const detectedCurrentElement = typeof elementIdentifier === "string" ? elementIdentifier : elementIdentifier.join("__");
+			const baseClassNameConcatWithElement = `${blockClassName}__${detectedCurrentElement}`;
+
+			return createClassNameProcessHandler(baseClassNameConcatWithElement, elementModifier);
 		},
 	};
 };
