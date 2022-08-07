@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import { useRef } from "react";
 import useClassName from "../../hooks/useClassName";
 
@@ -25,12 +25,14 @@ const TextInput = React.forwardRef<HTMLInputElement, ITextInputProps>(
 			startEnhancer,
 			endEnhancer,
 			className: inputComponentClassName,
+			label,
 			...restElementProps
 		},
 		ref
 	) => {
 		const enhanced = Boolean(startEnhancer || endEnhancer);
 		const [isFocused, setIsFocused] = useState(false);
+		const id = useId();
 
 		const modifiersList = { size, enhanced, focus: isFocused, error: haveError };
 		const className = useClassName("textInput", modifiersList, inputComponentClassName);
@@ -47,12 +49,14 @@ const TextInput = React.forwardRef<HTMLInputElement, ITextInputProps>(
 						</div>
 					)}
 					<input
+						id={`input${id}`}
 						onFocus={() => setIsFocused(true)}
 						onBlur={() => setIsFocused(false)}
 						type="text"
 						{...restElementProps}
 						ref={ref}
 					/>
+					{label && <label htmlFor={`input${id}`}>{label}</label>}
 					{endEnhancer && (
 						<div onClick={focusOnInputHandler} className={className.element("endEnhancer")}>
 							{renderEnhancer(endEnhancer)}

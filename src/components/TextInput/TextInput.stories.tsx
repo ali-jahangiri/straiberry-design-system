@@ -8,10 +8,15 @@ export default {
 	component: TextInput,
 } as ComponentMeta<typeof TextInput>;
 
-const Story: ComponentStory<typeof TextInput> = args => <TextInput {...args} />;
+const Story: ComponentStory<typeof TextInput> = args => (
+	<div style={{ marginTop: "10rem", width: "60%" }}>
+		<TextInput {...args} />
+	</div>
+);
 
 export const Default = Story.bind({});
 
 Default.args = {
-	placeholder: "نام و نام خانوادگی",
+	placeholder: "نام و نام خانوادگی را وارد نماید.",
+	label: "نام و نام خانوادگی",
 };

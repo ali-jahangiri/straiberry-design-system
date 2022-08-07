@@ -7,4 +7,5 @@ export interface ITextInputProps extends TInputBaseProps, IComponentRenderEnhanc
 	errorMessage?: string;
 	haveError?: boolean;
 	size?: TComponentSize;
+	label?: string;
 }
