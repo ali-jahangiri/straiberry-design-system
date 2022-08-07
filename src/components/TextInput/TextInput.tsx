@@ -26,6 +26,8 @@ const TextInput = React.forwardRef<HTMLInputElement, ITextInputProps>(
 			endEnhancer,
 			className: inputComponentClassName,
 			label,
+			value = "",
+			onChange = () => {},
 			...restElementProps
 		},
 		ref
@@ -49,14 +51,23 @@ const TextInput = React.forwardRef<HTMLInputElement, ITextInputProps>(
 						</div>
 					)}
 					<input
+						{...restElementProps}
 						id={`input${id}`}
 						onFocus={() => setIsFocused(true)}
 						onBlur={() => setIsFocused(false)}
+						onChange={e => onChange(e.target.value)}
 						type="text"
-						{...restElementProps}
+						value={value || ""}
 						ref={ref}
 					/>
-					{label && <label htmlFor={`input${id}`}>{label}</label>}
+					{label && (
+						<label
+							className={className.elementWithModifier("label", { active: isFocused || Boolean(value) })}
+							htmlFor={`input${id}`}
+						>
+							{label}
+						</label>
+					)}
 					{endEnhancer && (
 						<div onClick={focusOnInputHandler} className={className.element("endEnhancer")}>
 							{renderEnhancer(endEnhancer)}

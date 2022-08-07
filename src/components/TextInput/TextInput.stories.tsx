@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import TextInput from "./TextInput";
@@ -8,11 +8,15 @@ export default {
 	component: TextInput,
 } as ComponentMeta<typeof TextInput>;
 
-const Story: ComponentStory<typeof TextInput> = args => (
-	<div style={{ marginTop: "10rem", width: "60%" }}>
-		<TextInput {...args} />
-	</div>
-);
+const Story: ComponentStory<typeof TextInput> = args => {
+	const [value, setValue] = useState("");
+
+	return (
+		<div style={{ marginTop: "10rem", width: "60%" }}>
+			<TextInput {...args} value={value} onChange={setValue} />
+		</div>
+	);
+};
 
 export const Default = Story.bind({});
 

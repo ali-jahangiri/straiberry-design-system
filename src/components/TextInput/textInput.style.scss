@@ -7,21 +7,6 @@
 	margin: $space-4 0;
 	position: relative;
 
-	label {
-		position: absolute;
-		right: $space-4;
-		top: 50%;
-		z-index: 1;
-		color: $darkGrey;
-		display: flex;
-		align-items: center;
-		transition: $transitionDurationFast;
-		user-select: none;
-		min-width: 90%;
-		transform: translateY(-50%);
-		cursor: text;
-	}
-
 	input {
 		width: 100%;
 		padding: $space-3 $space-4;
@@ -42,13 +27,28 @@
 			&::placeholder {
 				color: $grey;
 			}
+		}
+	}
 
-			& ~ label {
-				font-size: $fontSize-sm;
-				background-color: transparent;
-				top: -50%;
-				right: $space-1;
-			}
+	&__label {
+		position: absolute;
+		right: $space-4;
+		top: 50%;
+		z-index: 1;
+		color: $darkGrey;
+		display: flex;
+		align-items: center;
+		transition: $transitionDurationFast;
+		user-select: none;
+		min-width: 90%;
+		transform: translateY(-50%);
+		cursor: text;
+
+		&--active {
+			font-size: $fontSize-sm;
+			background-color: transparent;
+			top: -50%;
+			right: $space-1;
 		}
 	}
 
