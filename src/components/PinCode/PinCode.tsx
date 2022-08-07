@@ -2,13 +2,7 @@ import React, { useEffect, useRef } from "react";
 import selfClearTimeout from "../../utils/selfClearTimeout";
 
 import "./pinCode.style.scss";
-
-export interface IPinCodeProps {
-	values: string[];
-	autoFocusWithDelay?: boolean;
-	onChange: (values: string[]) => void;
-	onFullFill?: () => void;
-}
+import { IPinCodeProps } from "./pinCode.type";
 
 const PinCode: React.FC<IPinCodeProps> = ({ values = [], autoFocusWithDelay, onChange, onFullFill }) => {
 	const inputsFieldRefs = useRef<HTMLInputElement[]>([]);

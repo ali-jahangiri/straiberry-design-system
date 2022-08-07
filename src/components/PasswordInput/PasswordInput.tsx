@@ -1,21 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import selfClearTimeout from "../../utils/selfClearTimeout";
 
-export interface IPasswordInputProps {
-	value?: string;
-	placeholder?: string;
-	haveError?: boolean;
-	handleValidation?: boolean;
-	onValidateFail?: () => void;
-	onValidateSuccuss?: () => void;
-	onChange: (password: string) => void;
-}
-
 import "./passwordInput.style.scss";
+import { IPasswordInputProps } from "./passwordInput.type";
 
 const EN_ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 const NUMBERS = "1234567890";
-// const regex = /^(?=.*[A-Z].*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8}$/;
 
 function passwordStrengthCheck(password: string) {
 	const splittedPasswordString = password.split("");

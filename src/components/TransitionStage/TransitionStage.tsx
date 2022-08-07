@@ -1,18 +1,7 @@
 import * as React from "react";
 import { useEffect, useRef } from "react";
 import SlickSlider from "react-slick";
-
-export interface ITransitionStageSingleFrameProps {
-	children: React.ReactNode;
-}
-
-export interface ITransitionStageProps {
-	fade?: boolean;
-	currentStage: number;
-	direction: "vertical" | "horizontal";
-	className?: string;
-	children: React.ReactNode;
-}
+import { ITransitionStageProps, ITransitionStageSingleFrameProps } from "./transition.type";
 
 const TransitionStage = (props: ITransitionStageProps) => {
 	const { children, currentStage, className } = props;
@@ -37,9 +26,7 @@ const TransitionStage = (props: ITransitionStageProps) => {
 
 	useEffect(
 		function slideToCurrentStage() {
-			if (currentStage !== 0) {
-				sliderRef.current?.slickGoTo(currentStage);
-			}
+			if (currentStage !== 0) sliderRef.current?.slickGoTo(currentStage);
 		},
 		[currentStage]
 	);

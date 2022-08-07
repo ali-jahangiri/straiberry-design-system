@@ -1,11 +1,8 @@
 import React from "react";
 import "./container.style.scss";
+import { IContainerProps } from "./container.type";
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
-	children: React.ReactNode;
-}
-
-const Container: React.FC<Props> = ({ children, ...elementRestProperty }) => (
+const Container: React.FC<IContainerProps> = ({ children, ...elementRestProperty }) => (
 	<div {...elementRestProperty} className={`container ${elementRestProperty?.className || ""}`}>
 		{children}
 	</div>
