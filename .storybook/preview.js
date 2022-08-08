@@ -1,4 +1,4 @@
-import ThemeProvider from "../src/provider/ThemProvider";
+import CoreProvider from "../src/providers";
 
 export const parameters = {
 	actions: { argTypesRegex: "^on[A-Z].*" },
@@ -13,7 +13,9 @@ export const parameters = {
 export const decorators = [
 	Story => (
 		<div style={{ margin: "3em" }}>
-			<ThemeProvider>{<Story />}</ThemeProvider>
+			<CoreProvider>
+				<Story />
+			</CoreProvider>
 		</div>
 	),
 ];

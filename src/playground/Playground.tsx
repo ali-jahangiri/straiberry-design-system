@@ -8,7 +8,9 @@ interface StyledComponentProps extends ColorProps, LayoutProps {}
 
 const StyledDiv = styled("div", { shouldForwardProp })<StyledComponentProps>`
 	${color};
-	${layout}
+	${layout};
+
+	color: ${props => props.theme.colors.pallet.pink[6]};
 `;
 
 const Playground: React.FC = () => {

@@ -11,8 +11,7 @@ const themeSemanticToken = {
 	opacity: { ...opacity },
 	space: { ...space },
 	radii: { ...radii },
-	// sizes: { ...sizes },
-	sizes: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+	sizes: { ...sizes },
 	zIndices: { ...zIndex },
 	...typography,
 	shadows: {},
@@ -26,4 +25,5 @@ const themeSemanticToken = {
 	},
 };
 
+export type TThemeToken = typeof themeSemanticToken;
 export default themeSemanticToken;

@@ -9,7 +9,7 @@ export default {
 } as ComponentMeta<typeof Table>;
 
 const Story: ComponentStory<typeof Table> = args => {
-	return <Table {...args} onSelection={selectedItems => console.log(selectedItems)} />;
+	return <Table {...args} />;
 };
 
 export const Default = Story.bind({});
@@ -51,12 +51,8 @@ Default.args = {
 			key: "docCreateTime",
 		},
 	],
-	onSortBaseChange(sortList) {
-		console.log(sortList);
-	},
-	onSelection(selectedRecordRows) {
-		console.log(selectedRecordRows);
-	},
+	onSortBaseChange(sortList) {},
+	onSelection(selectedRecordRows) {},
 	selectionEnable: true,
 	// headerSticky: true,
 	data: [

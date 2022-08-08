@@ -45,9 +45,7 @@ CheckBoxGroup.args = {
 	options: STATIC_OPTION,
 	isDisabled: false,
 	defaultValues: ["educations"],
-	onChange: checkValues => {
-		console.log(checkValues);
-	},
+	onChange: checkValues => {},
 };
 
 CheckBoxItem.args = {
