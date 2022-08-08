@@ -7,13 +7,13 @@
 	"description": "Simple and maintainable UI library to use in regular design at 'straiberry'",
 	"scripts": {
 		"rollup": "rollup -c",
-		"test": "jest",
 		"storybook": "start-storybook -p 6006",
+		"start": "start-storybook -p 6006",
 		"build-storybook": "build-storybook",
 		"prettier:format": "prettier --write .",
 		"prettier:lint": "prettier --check .",
 		"eslint:lint": "eslint src/**",
-		"before-pub": "prettier --write . eslint src/**"
+		"prepublish": "prettier --write . && rollup -c"
 	},
 	"author": "YOUR_NAME",
 	"license": "ISC",

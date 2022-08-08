@@ -1,51 +1,66 @@
-import * as React from "react";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
+import { useRef, useState } from "react";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import selfClearTimeout from "../../utils/selfClearTimeout";
-
-export interface IPopoverProps {
-	open?: boolean;
-	width?: number;
-	placeholder?: React.ReactNode;
-	children: React.ReactNode;
-	onClose?: () => void;
-}
+import { IPopoverProps } from "./popOver.type";
 
 import "./popOver.style.scss";
+import useClassName from "../../hooks/useClassName";
+import useCrossoverViewportDetection from "../../hooks/useCrossoverViewportDetection";
 
-const Popover: React.FC<IPopoverProps> = ({ open, children, width, placeholder, onClose }) => {
-	const [isInUnMounting, setIsInUnMounting] = useState(false);
-	const [haveToUnMount, setHaveToUnMount] = useState(!open);
+const Popover: React.FC<IPopoverProps> = ({ visible, content, width, placeholder, onClose }) => {
+	const [renderContent, setRenderContent] = useState(false);
+	const [fadeShowingContent, setFadeShowingContent] = useState(false);
+	const className = useClassName("popover");
+
 	const popoverRef = useRef<HTMLDivElement>(null);
+	const popoverContentRef = useRef<HTMLDivElement>(null);
 
-	const hideAndUnmountDropDown = (isOpen: boolean) => {
-		if (!isOpen) {
-			setIsInUnMounting(false);
-			selfClearTimeout(() => setHaveToUnMount(true), 200);
-		} else if (haveToUnMount) {
-			setHaveToUnMount(false);
-			selfClearTimeout(() => setIsInUnMounting(true), 0);
-		}
+	const showContentHandler = () => {
+		setRenderContent(true);
+
+		selfClearTimeout(() => {
+			setFadeShowingContent(true);
+		}, 50);
 	};
 
-	// TODO handle too much open/close
+	const hideContentHandler = () => {
+		setFadeShowingContent(false);
+		selfClearTimeout(() => {
+			setRenderContent(false);
+		}, 200);
+	};
 
-	useOutsideClick(
-		popoverRef,
-		function onOutsideOfPopoverClick() {
-			if (open) onClose?.();
+	const clickOnPlaceholderContainerHandler = () => {
+		if (renderContent) hideContentHandler();
+		else showContentHandler();
+	};
+
+	useOutsideClick(popoverRef, hideContentHandler);
+
+	const acrossXUnit = useCrossoverViewportDetection(popoverContentRef);
+
+	useEffect(
+		function changePopoverStatus() {
+			if (visible) showContentHandler();
+			else hideContentHandler();
 		},
-		[open]
+		[visible]
 	);
 
-	useEffect(() => hideAndUnmountDropDown(Boolean(open)), [open]);
-
 	return (
-		<div ref={popoverRef} className="popover">
-			<div className="popover__placeholder">{placeholder}</div>
-			{!haveToUnMount ? (
-				<div style={{ width: width }} className={`popover__children ${isInUnMounting ? "popover__children--show" : ""}`}>
-					<div className="popover__contentContainer">{children}</div>
+		<div ref={popoverRef} className={className.block}>
+			<div onClick={clickOnPlaceholderContainerHandler} className={className.element("placeholder")}>
+				{placeholder}
+			</div>
+			{renderContent ? (
+				<div
+					ref={popoverContentRef}
+					style={{ width, left: `calc(50% + ${acrossXUnit}px)` }}
+					className={className.elementWithModifier("content", { show: fadeShowingContent })}
+				>
+					<span className={className.element("content", "arrow")} style={{ left: `calc(50% + ${acrossXUnit * -1}px)` }} />
+					<div className={className.element("contentContainer")}>{content}</div>
 				</div>
 			) : null}
 		</div>

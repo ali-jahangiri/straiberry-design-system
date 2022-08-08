@@ -1,21 +1,21 @@
 @import "../../styles/";
 
 .popover {
-	&__children {
+	position: relative;
+
+	&__content {
 		position: absolute;
 		left: 50%;
 		top: 50px;
 		background-color: $white;
 		border-radius: $borderRadius-2;
-		box-shadow: 0 0 30px black;
 		box-shadow: 0 0px 48px -22px $darkGrey;
 		z-index: 4;
-		transition: $transition;
+		transition: all $transition, left 0s;
 		opacity: 0;
-		transform: translate(-50%, 0px);
+		transform: translate(-50%, $space-1);
 
-		&::before {
-			content: "";
+		&__arrow {
 			display: block;
 			position: absolute;
 			left: 50%;
@@ -28,7 +28,7 @@
 
 		&--show {
 			opacity: 1;
-			transform: translate(-50%, 10px);
+			transform: translate(-50%, $space-3);
 		}
 	}
 
