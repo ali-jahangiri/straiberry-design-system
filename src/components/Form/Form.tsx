@@ -1,14 +1,17 @@
-// const Form: React.FC = ({ children, onSubmit, ...restElementProperty }) => {
-// 	const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-// 		e.preventDefault();
-// 		onSubmit();
-// 	};
+import React from "react";
+import { IFormProps } from "./form.type";
 
-// 	return (
-// 		<form {...restElementProperty} onSubmit={onSubmitHandler}>
-// 			{children}
-// 		</form>
-// 	);
-// };
+const Form: React.FC<IFormProps> = ({ children, onSubmit, ...restElementProperty }) => {
+	const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		onSubmit();
+	};
 
-// export default Form;
+	return (
+		<form {...restElementProperty} onSubmit={onSubmitHandler}>
+			{children}
+		</form>
+	);
+};
+
+export default Form;
