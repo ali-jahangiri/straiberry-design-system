@@ -5,6 +5,7 @@ import space from "./space";
 import typography from "./typography";
 import zIndex from "./zIndex";
 import sizes from "./sizes";
+import animate from "./animate";
 
 const themeSemanticToken = {
 	colors: { ...colors },
@@ -14,15 +15,8 @@ const themeSemanticToken = {
 	sizes: { ...sizes },
 	zIndices: { ...zIndex },
 	...typography,
+	...animate,
 	shadows: {},
-	time: {
-		1: 500,
-		2: 300,
-		3: 100,
-	},
-	timeFunction: {
-		ease: "ease",
-	},
 };
 
 export type TThemeToken = typeof themeSemanticToken;

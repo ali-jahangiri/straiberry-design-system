@@ -2,8 +2,9 @@ import React from "react";
 import useClassName from "../../hooks/useClassName";
 import renderEnhancer from "../../utils/renderEnhancer";
 import Spinner from "../Spinner";
-
+import StyledButton from "./button.style";
 import "./Button.scss";
+
 import { IButtonProps } from "./button.type";
 
 const Button: React.FC<IButtonProps> = ({
@@ -23,7 +24,7 @@ const Button: React.FC<IButtonProps> = ({
 	const className = useClassName("button", modifiersList, buttonComponentClassName);
 
 	return (
-		<button {...restElementProps} disabled={isDisabled} className={className.block}>
+		<StyledButton {...restElementProps} disabled={isDisabled} className={className.block}>
 			<div className="button__content">
 				{endEnhancer && <div className={className.element("endEnhancer")}>{renderEnhancer(endEnhancer)}</div>}
 				{children}
@@ -32,7 +33,7 @@ const Button: React.FC<IButtonProps> = ({
 			<div className={className.element("loadingSpinner")}>
 				<Spinner disabledWhileLoading={isDisabled} rotate={isLoading} mode={type === "primary" ? "white" : "dark"} />
 			</div>
-		</button>
+		</StyledButton>
 	);
 };
 
