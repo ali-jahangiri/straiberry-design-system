@@ -1,5 +1,5 @@
 {
-	"name": "@ali-jahangiri/straiberry-design-system",
+	"name": "@ali-jahangiri/npm-publish-test",
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com/@ali-jahangiri"
 	},

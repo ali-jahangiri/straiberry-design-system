@@ -1,8 +1,0 @@
-$transitionDurationExtraSlow: 500ms;
-$transitionDurationSlow: 370ms;
-$transitionDurationNormal: 300ms;
-$transitionDurationFast: 200ms;
-$transitionDurationExtraFast: 100ms;
-$transitionTimingFunction: cubic-bezier(0.86, 0, 0.07, 1);
-
-$transition: $transitionDurationFast $transitionTimingFunction;
